@@ -68,6 +68,16 @@ Will try and support this from this sensor in the future.
 The sensor has only been testet on a [OSMC](https://osmc.tv/) image for the Raspberry Pi 2, using Home Assistant 0.57dev.\
 This sensor also works with Hass.io installed as Hass.OS on a Raspberry Pi 3B+, using Home Assistant 0.99.3
 
+## If your Thingy:52 keeps disconnecting at around 1 minute follow these instructions 
+  This was Tested on Ubuntu 18.04.1 and Raspbian Stretch. Just ssh into your device and issue these commands:
+
+```
+  sudo chmod -R 777 /sys/kernel/debug
+  sudo echo  6 > /sys/kernel/debug/bluetooth/hci0/conn_min_interval
+  sudo echo 20 > /sys/kernel/debug/bluetooth/hci0/conn_max_interval
+```
+  These changes do not persist after a reboot so it's best to add them to a startup script
+
 ## Known issues
 * Will not handle automatic reconnections
 
